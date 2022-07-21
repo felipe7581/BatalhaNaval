@@ -16,6 +16,7 @@ public class Teste {
 
         Tabuleiro tab = new Tabuleiro(tabuleiro,navios);
         tab.iniciaTabuleiro(tabuleiro);
+        tab.iniciaNavios(navios);
 
         do {
             tab.exibeTabuleiro(tabuleiro);
@@ -23,9 +24,17 @@ public class Teste {
 
 
             tab.darTiro(tiro);
+
+            if(tab.acertou(tiro,navios) == true){
+                acertos++;
+            }
             tentativas++;
+            tab.alteraTabuleiro(tiro,navios,tabuleiro);
         }while(acertos !=3);
 
+        if(acertos == 3){
+            System.out.println("Voce Ganhou! *-*");
+        }
 
         tab.exibeTabuleiro(tabuleiro);
 

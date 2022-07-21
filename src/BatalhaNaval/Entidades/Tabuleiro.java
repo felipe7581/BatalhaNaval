@@ -46,7 +46,7 @@ public class Tabuleiro {
         }
     }
 
-    public void iniciaNavios(int[][] navios,int[][] tabuleiro){
+    public void iniciaNavios(int[][] navios){
 
         for (int i = 0;  i < navios.length;  i++) {
             navios[i][0] = gerador.nextInt(5);
@@ -74,7 +74,22 @@ public class Tabuleiro {
 
     }
 
-    public void acertou(int tiro, int[][]navios){
+    public boolean acertou(int[] tiro, int[][]navios){
+        for (int i = 0; i < navios.length ;i++) {
+            if (tiro[0] == navios[i][0] && tiro[1]==navios[i][1]) {
+                System.out.printf("Você acertou o tiro(%d,%d)\n",tiro[0]+1,tiro[1]+1);
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public void alteraTabuleiro(int[] tiro, int[][] navios, int[][]tabuleiro){
+        if(acertou(tiro,navios)){
+            tabuleiro[tiro[0]][tiro[1]] = 1;
+        }
+        else{
+            tabuleiro[tiro[0]][tiro[1]] = 0;
+        }
     }
 }
